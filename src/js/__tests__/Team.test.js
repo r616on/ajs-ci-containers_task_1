@@ -16,9 +16,14 @@ test('test add', () => {
     type: 'Bowerman',
   };
   team.add(bowerman);
-  team.add(bowerman);
   expect(team.members.size).toBe(1);
   expect(team.members).toContainEqual(data);
+});
+
+test('test add clone error', () => {
+  const team = new Team();
+  team.add(bowerman);
+  expect(() => team.add(bowerman)).toThrow('Персонаж уже есть в комманде');
 });
 
 test('test addAll', () => {
@@ -48,8 +53,5 @@ test('test addAll', () => {
 test('test toArray', () => {
   const team = new Team();
   team.add(bowerman);
-  team.add(zombie);
-  team.add(bowerman);
-  expect(team.toArray().length).toBe(2);
   expect(Array.isArray(team.toArray())).toBe(true);
 });

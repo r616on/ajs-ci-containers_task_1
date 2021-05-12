@@ -4,7 +4,11 @@ export default class Team {
   }
 
   add(obj) {
-    this.members.add(obj);
+    if (!this.members.has(obj)) {
+      this.members.add(obj);
+    } else {
+      throw new Error('Персонаж уже есть в комманде');
+    }
   }
 
   addAll(...arr) {
